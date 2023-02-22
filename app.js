@@ -16,7 +16,7 @@ window.addEventListener('keydown', (event) => {
 let createEnemy = setInterval(() => {
     let enemy =  document.createElement("div");
     enemy.classList.add("enemy");
-    let enemyValue = parseInt(window.getComputedStyle(enemy).getPropertyValue("left"));
+    //let enemyValue = parseInt(window.getComputedStyle(enemy).getPropertyValue("left"));
     enemy.style.left = Math.floor(Math.random() * 320) + "px";
   
     board.appendChild(enemy);
@@ -26,7 +26,7 @@ let createEnemy = setInterval(() => {
 let createBalls = setInterval(() => {
     let ball =  document.createElement("div");
     ball.classList.add("ball");
-    let ballValue = parseInt(window.getComputedStyle(ball).getPropertyValue("left"));
+    //let ballValue = parseInt(window.getComputedStyle(ball).getPropertyValue("left"));
     ball.style.left = Math.floor(Math.random() * 320) + "px";
   
     board.appendChild(ball);
@@ -55,5 +55,17 @@ let moveBalls = setInterval(() => {
             let ballTop = parseInt(window.getComputedStyle(ball).getPropertyValue("top"));
             ball.style.top = ballTop + 25 + "px";
         }
+
+        let ballBound = balls.getBoundingClientRect();
+        let playerBound = player.getBoundingClientRect();
+
+        if (playerBound.left >= ballBound.left && playerBound.right <= ballBound.right && playerBound.top <= ballBound.top && playerBound.bottom <= ballBound.bottom ) {
+            balls.parentElement.removeChild(balls);
+          }
     }
 },450);
+
+//Detect Colision
+
+let rockbound = rock.getBoundingClientRect();
+let bulletbound = bullet.getBoundingClientRect();
