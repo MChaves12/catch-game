@@ -87,18 +87,20 @@ button {
     position: absolute;
     top: 0px;
     width: 60px;
-    height: 80px;
+    height: 60px;
     background: url("./images/enemy.png");
     background-size: contain;
     background-repeat: no-repeat;
+
 }
 
 .ball {
     position: absolute;
     top: 0px;
     width: 60px;
-    height: 80px;
+    height: 60px;
     background: url("./images/ball.png");
     background-size: contain;
     background-repeat: no-repeat;
+
 }

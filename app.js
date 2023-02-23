@@ -29,16 +29,14 @@ window.addEventListener('keydown', (event) => {
 let createEnemy = setInterval(() => {
     let enemy =  document.createElement("div");
     enemy.classList.add("enemy");
-    //let enemyValue = parseInt(window.getComputedStyle(enemy).getPropertyValue("left"));
     enemy.style.left = Math.floor(Math.random() * 320) + "px";
     board.appendChild(enemy);
-}, 3000);
+}, 5000);
 
 //Creating Balls
 let createBalls = setInterval(() => {
     let ball =  document.createElement("div");
     ball.classList.add("ball");
-    //let ballValue = parseInt(window.getComputedStyle(ball).getPropertyValue("left"));
     ball.style.left = Math.floor(Math.random() * 320) + "px";
     board.appendChild(ball);
 }, 5000);
@@ -46,37 +44,44 @@ let createBalls = setInterval(() => {
 //Moving the enemies
 let moveEnemies = setInterval(() => {
     let enemies = document.getElementsByClassName('enemy');
+    const player = document.querySelector('#player');
+
 
     if(enemies != undefined){
         for (let i = 0; i < enemies.length; i++) {
             let enemy = enemies[i];
             let enemyTop = parseInt(window.getComputedStyle(enemy).getPropertyValue("top"));
+            let playerBound = player.getBoundingClientRect();
             let enemyBound = enemy.getBoundingClientRect();
-            /* if(playerBound.width <= enemyBound.width){
+            if(enemyBound.bottom >= playerBound.top && enemyBound.left <= playerBound.right && enemyBound.right <= playerBound.left && enemyBound.top >= playerBound.bottom){
                 alert("Game Over");
                 clearInterval(moveEnemies);
                 window.location.reload();
-            } */
+            }
             enemy.style.top = enemyTop + 25 + "px";
         }
     }
-},450);
+}, 1500);
 
 //Moving the balls
 let moveBalls = setInterval(() => {
     let balls = document.getElementsByClassName('ball');
+    const player = document.querySelector('#player');
+
 
     if(balls != undefined){
         for (let i = 0; i < balls.length; i++) {
             let ball = balls[i];
             let ballTop = parseInt(window.getComputedStyle(ball).getPropertyValue("top"));
             let ballBound = ball.getBoundingClientRect();
-             if(ballBound.bottom >= playerBound.top + 600){
+            let playerBound = player.getBoundingClientRect().top;
+
+             if(ballBound.bottom >= playerBound && ballBound.left <= playerBound && ballBound.right <= playerBound && ballBound.top >= playerBound){
                 ball.parentElement.removeChild(ball);
                 document.querySelector(".points").innerHTML = parseInt(document.querySelector(".points").innerHTML) + 1;
             } 
-            ball.style.top = ballTop + 25 + "px";
+            ball.style.top = ballTop + 60 + "px";
         }  
     }
-},450);
+}, 500);
 
