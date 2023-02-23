@@ -5,12 +5,48 @@
     
 }
 
-body {
+#start-screen {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-image: url('./images/stadium.jpg');
+    background-size: cover;
+}
+
+#game-area {
+    width: 100%;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: space-around;
     background-image: url('./images/stadium.jpg');
     background-size: cover;
+}
+
+h1 {
+    font-size: 80px;
+    font-family: fantasy;
+    color: #333; 
+}
+
+button {
+    width: 200px;
+    height: 50px;
+    background-color: rgba(3, 3, 3, .5);
+    color: white;
+    font-size: 25px;
+    font-family: fantasy;
+    border: none;
+    border-radius: 10px;
+
+}
+
+.hidden {
+    display: none !important;
 }
 
 #score {
