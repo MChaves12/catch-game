@@ -1,4 +1,4 @@
-//Start Game Screen
+//Start Game
 const startScreen = document.querySelector('#start-screen');
 const gameArea = document.querySelector('#game-area');
 const startBtn = document.querySelector('#start-screen button');
@@ -8,8 +8,7 @@ startBtn.addEventListener('click', () => {
     gameArea.classList.remove('hidden');
 });
 
-
-//Making The Game Area
+//Game Area
 const board = document.querySelector('#board');
 const player = document.querySelector('#player');
 let playerBound = player.getBoundingClientRect();
@@ -21,36 +20,34 @@ window.addEventListener('keydown', (event) => {
     if (event.key == "ArrowLeft" && left > 0) {
       player.style.left = left - 10 + "px";
     }
-    else if (event.key == "ArrowRight" && left <= 270) {
+    else if (event.key == "ArrowRight" && left <= 320) {
         player.style.left = left + 10 + "px";
       }
 });
 
-//Creating Elements (enemies and objectives)
-function createElement(elementName) {
+//Creating Elements
+function createElemente(elementName){
     let createElement = setInterval(() => {
         let element =  document.createElement("div");
         element.classList.add(elementName);
-        element.style.left = Math.floor(Math.random() * 340) + "px";
+        element.style.left = Math.floor(Math.random() * 320) + "px";
         board.appendChild(element);
     }, 5000);
-
-    return createElement;
 }
 
-createElement('enemy');
-createElement('ball')
+createElemente('enemy');
+createElemente('ball');
 
 //Moving the enemies
 let moveEnemies = setInterval(() => {
     let enemies = document.getElementsByClassName('enemy');
-    
+    const player = document.querySelector('#player');
     if(enemies != undefined){
         for (let i = 0; i < enemies.length; i++) {
             let enemy = enemies[i];
             let enemyTop = parseInt(window.getComputedStyle(enemy).getPropertyValue("top"));
-            let enemyBound = enemy.getBoundingClientRect();
             let playerBound = player.getBoundingClientRect();
+            let enemyBound = enemy.getBoundingClientRect();
             if(enemyBound.left >= playerBound.left && enemyBound.right <= playerBound.right && enemyBound.top <= playerBound.top && enemyBound.bottom <= playerBound.bottom){
                 alert("Game Over");
                 clearInterval(moveEnemies);
@@ -64,14 +61,14 @@ let moveEnemies = setInterval(() => {
 //Moving the balls
 let moveBalls = setInterval(() => {
     let balls = document.getElementsByClassName('ball');
-    
+    const player = document.querySelector('#player');
     if(balls != undefined){
         for (let i = 0; i < balls.length; i++) {
             let ball = balls[i];
             let ballTop = parseInt(window.getComputedStyle(ball).getPropertyValue("top"));
             let ballBound = ball.getBoundingClientRect();
             let playerBound = player.getBoundingClientRect();
-            if(ballBound.left >= playerBound.left && ballBound.right <= playerBound.right && ballBound.top <= playerBound.top && ballBound.bottom <= playerBound.bottom){
+             if(ballBound.left >= playerBound.left && ballBound.right <= playerBound.right && ballBound.top <= playerBound.top && ballBound.bottom <= playerBound.bottom){
                 ball.parentElement.removeChild(ball);
                 document.querySelector(".points").innerHTML = parseInt(document.querySelector(".points").innerHTML) + 1;
             } 
