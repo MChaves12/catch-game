@@ -2,7 +2,6 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    
 }
 
 #start-screen {
@@ -42,7 +41,6 @@ button {
     font-family: fantasy;
     border: none;
     border-radius: 10px;
-
 }
 
 .hidden {
@@ -74,8 +72,8 @@ button {
 
 #player {
     position: absolute;
-    width: 80px;
-    height: 80px;
+    width: 68px;
+    height: 70px;
     background: url("./images/player.png");
     background-size: contain;
     background-repeat: no-repeat;
@@ -91,7 +89,6 @@ button {
     background: url("./images/enemy.png");
     background-size: contain;
     background-repeat: no-repeat;
-
 }
 
 .ball {
@@ -102,5 +99,4 @@ button {
     background: url("./images/ball.png");
     background-size: contain;
     background-repeat: no-repeat;
-
 }
